@@ -25,6 +25,8 @@ public class BlackHole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (minScale > maxScale) { minScale = maxScale; }
+
         currentScale = Mathf.Lerp(minScale, maxScale, Mathf.PingPong(scaleSpeed * Time.time, 1.0f));
 
         currentScale = Mathf.Round(currentScale * 100) / 100.0f;
