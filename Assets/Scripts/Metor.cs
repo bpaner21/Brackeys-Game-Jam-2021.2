@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Metor : Projectile
 {
-    [SerializeField] protected CircleCollider2D collision;
+    [SerializeField] protected CircleCollider2D colliding;
 
     public bool contact = false;
 
@@ -13,9 +13,9 @@ public class Metor : Projectile
     {
         base.Awake();
 
-        collision = GetComponent<CircleCollider2D>();
+        colliding = GetComponent<CircleCollider2D>();
 
-        collision.radius = transform.localScale.x;
+        colliding.radius = transform.localScale.x;
     }
 
     /*
@@ -45,6 +45,6 @@ public class Metor : Projectile
 
         inN = (inN - collision.contacts[0].point).normalized;
 
-        angle = Vector2.Reflect(angle, inN);
+        angle = Vector2.Reflect(angle, inN).normalized;
     }
 }

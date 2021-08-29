@@ -31,7 +31,6 @@ public class Paddle : MonoBehaviour
     private void Awake()
     {
         collision = GetComponent<BoxCollider2D>();
-        collision.size = new Vector2(transform.localScale.x, transform.localScale.y);
     }
 
     // Start is called before the first frame update

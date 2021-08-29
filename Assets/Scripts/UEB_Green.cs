@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UEB_Red : Enemy
+public class UEB_Green : Enemy
 {
     // Start is called before the first frame update
     new protected void Start()

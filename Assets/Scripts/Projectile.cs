@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(Collider2D))]
 public abstract class Projectile : MonoBehaviour
 {
     private static float screenWidth = Screen.width;
@@ -15,7 +14,7 @@ public abstract class Projectile : MonoBehaviour
 
     [SerializeField] protected Vector2 angle; // Angle in Radians, divided into a vector of {Sin, Cos}
 
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 1.0f;
 
     [SerializeField] private int size;
 
@@ -27,9 +26,9 @@ public abstract class Projectile : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
-        angle = new Vector2(-transform.position.x, -transform.position.y);
+        angle = new Vector2(-transform.position.x, -transform.position.y).normalized;
 
-        speed = 2.0f;
+        //speed = 1.0f;
     }
 
     // Update is called once per frame
