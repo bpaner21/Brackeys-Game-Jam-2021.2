@@ -3,7 +3,11 @@ guid: 2f4e7692cd4884647b982070a4c0f7d0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rendering: {instanceID: 0}
+  - colliding: {instanceID: 0}
+  - circle: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  - splitMeteor: {fileID: 4745935107138137180, guid: 21dcf40058cd1f341a133a74a498d311, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

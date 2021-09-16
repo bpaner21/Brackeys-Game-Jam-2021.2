@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6077416908916030189}
   - component: {fileID: 6077416908916030190}
   - component: {fileID: 6077416908916030191}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UEB_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,12 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rendering: {fileID: 0}
   becameVisible: 0
-  angle: {x: 0, y: 0}
+  angle: 0
+  angleXY: {x: 0, y: 0}
   speed: 9
-  size: 1
   health: 100
-  colliding: {fileID: 0}
-  animating: {fileID: 0}
+  eCollider: {fileID: 0}
+  eRigidbody: {fileID: 0}
+  eAnimator: {fileID: 0}
 --- !u!212 &6077416908916030189
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Paddle : MonoBehaviour
 {
-    [SerializeField] private GameObject blackHole;
+    [SerializeField] private GameObject blackHole = null;
 
     [SerializeField] private BoxCollider2D collision;
 
@@ -18,7 +18,7 @@ public class Paddle : MonoBehaviour
     [SerializeField] private float angle;
 
     [Range(0.0f, 30.0f)]
-    [SerializeField] private float angleStep;
+    [SerializeField] private float angleStep = 12.0f;
 
     [Range(0.01f, 1.0f)]
     [SerializeField] private float widthScale = 0.75f;

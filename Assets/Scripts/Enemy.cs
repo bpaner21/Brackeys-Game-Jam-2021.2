@@ -4,21 +4,27 @@ using UnityEngine;
 
 [RequireComponent(typeof(PolygonCollider2D))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : Projectile
 {
-    [SerializeField] protected int health = 100;
+    [SerializeField] protected PolygonCollider2D eCollider;
 
-    [SerializeField] protected PolygonCollider2D colliding;
+    [SerializeField] protected Rigidbody2D eRigidbody;
 
-    [SerializeField] protected Animator animating;
+    [SerializeField] protected Animator eAnimator;
 
     new protected void Awake()
     {
         base.Awake();
 
-        colliding = GetComponent<PolygonCollider2D>();
+        health = 100;
 
-        animating = GetComponent<Animator>();
+        eCollider = GetComponent<PolygonCollider2D>();
+
+        eRigidbody = GetComponent<Rigidbody2D>();
+
+        eAnimator = GetComponent<Animator>();
+
     }
 
     // Start is called before the first frame update
@@ -37,8 +43,14 @@ public class Enemy : Projectile
     {
         Vector2 inN = transform.position;
 
-        inN = (inN - collision.contacts[0].point).normalized;
+        inN = (inN - collision.contacts[0].point);
 
-        angle = Vector2.Reflect(angle, inN).normalized;
+        inN.Normalize();
+
+        angleXY = Vector2.Reflect(angleXY, inN);
+
+        angleXY.Normalize();
+
+        Debug.Log(this + " Hit");
     }
 }

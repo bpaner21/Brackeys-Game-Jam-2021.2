@@ -5,6 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class Projectile : MonoBehaviour
 {
+    protected static class Directions
+    {
+        public const float Up = Mathf.PI * 0.5f;
+        public const float Left = Mathf.PI;
+        public const float Down = Mathf.PI * 1.5f;
+        public const float Right = Mathf.PI * 2.0f;
+    }
+
     private static float screenWidth = Screen.width;
     private static float screenHeight = Screen.height;
 
@@ -12,11 +20,13 @@ public abstract class Projectile : MonoBehaviour
 
     [SerializeField] private bool becameVisible = false;
 
-    [SerializeField] protected Vector2 angle; // Angle in Radians, divided into a vector of {Sin, Cos}
+    [SerializeField] protected float angle = 0.0f; // Angle in Radians
 
-    [SerializeField] private float speed = 1.0f;
+    [SerializeField] protected Vector2 angleXY; // movement direction of angle, presented as a normalized vector
 
-    [SerializeField] private int size;
+    [SerializeField] protected float speed = 1.0f;
+
+    [SerializeField] protected int health;
 
     protected void Awake()
     {
@@ -26,9 +36,15 @@ public abstract class Projectile : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
-        angle = new Vector2(-transform.position.x, -transform.position.y).normalized;
+        if (angleXY == Vector2.zero)
+        {
+            angleXY = new Vector2(-transform.position.x, -transform.position.y);
+            angleXY.Normalize();
+        }
 
         //speed = 1.0f;
+
+        //Debug.Log("Start");
     }
 
     // Update is called once per frame
@@ -60,7 +76,7 @@ public abstract class Projectile : MonoBehaviour
 
     protected void Move()
     {
-        transform.Translate(angle.x * speed * Time.deltaTime, angle.y * speed * Time.deltaTime, 0.0f);
+        transform.Translate(angleXY.x * speed * Time.deltaTime, angleXY.y * speed * Time.deltaTime, 0.0f);
     }
 
     protected void Collide()
@@ -73,20 +89,21 @@ public abstract class Projectile : MonoBehaviour
 
     }
 
-    public Vector2 Angle 
+    public float Angle
+    {
+        get { return angle;  }
+        // protected set { angle = value; }
+    }
+
+    public Vector2 AngleXY
     { 
-        get { return angle; } 
-        // private set { angle = value; } 
+        get { return angleXY; } 
+        // protected set { angleXY = value; } 
     }
 
     public float Speed 
     { 
         get { return speed; } 
         // private set { speed = value; } 
-    }
-
-    public int Size 
-    {
-        get { return size; } 
     }
 }
